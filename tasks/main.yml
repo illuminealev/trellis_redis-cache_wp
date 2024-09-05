@@ -1,2 +1,14 @@
 ---
-# tasks file for trellis_redis-cache_wp
+- name: Debug and see shared location
+  debug:
+    msg: "{{ deploy_helper.shared_path }}"
+
+- name: Install redis-cache plugin
+  command: "wp plugin install redis-cache --activate"
+  args:
+    chdir: "{{ deploy_helper.new_release_path }}"
+
+- name: Enable redis-cache plugin
+  command: "wp redis enable"
+  args:
+    chdir: "{{ deploy_helper.new_release_path }}"
