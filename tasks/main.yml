@@ -6,6 +6,8 @@
 - name: Check if redis-cache plugin is activated
   command: "wp plugin list | grep redis-cache | awk '{print $2}'"
   register: plugin_status
+  args:
+    chdir: "{{ deploy_helper.new_release_path }}"
 
 - name: Do these steps only if plugin is active
   block:
