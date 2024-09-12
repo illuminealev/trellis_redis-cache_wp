@@ -23,4 +23,4 @@
     - name: Flush redis DB
       shell: "redis-cli FLUSHALL"
 
-when: plugin_status.stdout != "inactive"
+  when: plugin_status.stdout is defined and plugin_status.stdout != "" and plugin_status.stdout != "inactive"
